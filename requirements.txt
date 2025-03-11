@@ -1,7 +1,7 @@
-torch
-torchvision
-gradio
-scikit-learn
-matplotlib
-numpy
-Pillow
+torch==2.6.0
+torchvision==0.21.0
+gradio==5.20.1
+scikit-learn==1.6.1
+matplotlib==3.10.1
+numpy==2.2.3
+pillow==11.1.0

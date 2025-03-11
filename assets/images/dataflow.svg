@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="250" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background pattern -->
+  <pattern id="checkerboard" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0" width="10" height="10" fill="#f5f5f5"/>
+    <rect x="10" y="0" width="10" height="10" fill="#eeeeee"/>
+    <rect x="0" y="10" width="10" height="10" fill="#eeeeee"/>
+    <rect x="10" y="10" width="10" height="10" fill="#f5f5f5"/>
+  </pattern>
+  <rect width="800" height="250" fill="url(#checkerboard)"/>
+
+  <text x="400" y="30" font-weight="bold" font-size="20" text-anchor="middle" fill="#333">Data Flow</text>
+
+  <!-- Dataset -->
+  <rect x="50" y="70" width="120" height="60" fill="white" stroke="#333" stroke-width="1"/>
+  <text x="110" y="105" font-size="14" text-anchor="middle" fill="#333">Dataset.zip</text>
+
+  <!-- Data Loading -->
+  <rect x="250" y="70" width="120" height="60" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="310" y="105" font-size="14" text-anchor="middle" fill="#333">Data Loading</text>
+
+  <!-- Data Processing -->
+  <rect x="450" y="70" width="120" height="60" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="510" y="105" font-size="14" text-anchor="middle" fill="#333">Preprocessing</text>
+
+  <!-- Model -->
+  <rect x="650" y="70" width="120" height="60" fill="#e8f5e9" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="710" y="105" font-size="14" text-anchor="middle" fill="#333">Model Training</text>
+
+  <!-- Saved Model -->
+  <rect x="650" y="170" width="120" height="60" fill="white" stroke="#333" stroke-width="1"/>
+  <text x="710" y="205" font-size="14" text-anchor="middle" fill="#333">Saved Model</text>
+
+  <!-- App -->
+  <rect x="450" y="170" width="120" height="60" fill="#fff8e1" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="510" y="205" font-size="14" text-anchor="middle" fill="#333">Gradio App</text>
+
+  <!-- Arrows -->
+  <!-- Using simple approach without markers for better compatibility -->
+  <line x1="170" y1="100" x2="240" y2="100" stroke="#666" stroke-width="2"/>
+  <polygon points="240,100 234,96 234,104" fill="#666"/>
+
+  <line x1="370" y1="100" x2="440" y2="100" stroke="#666" stroke-width="2"/>
+  <polygon points="440,100 434,96 434,104" fill="#666"/>
+
+  <line x1="570" y1="100" x2="640" y2="100" stroke="#666" stroke-width="2"/>
+  <polygon points="640,100 634,96 634,104" fill="#666"/>
+
+  <line x1="710" y1="130" x2="710" y2="170" stroke="#666" stroke-width="2"/>
+  <polygon points="710,170 706,164 714,164" fill="#666"/>
+
+  <line x1="650" y1="200" x2="580" y2="200" stroke="#666" stroke-width="2"/>
+  <polygon points="580,200 586,196 586,204" fill="#666"/>
+</svg>

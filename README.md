@@ -1,132 +1,150 @@
-# Image Classification Framework
+# Generic Image Classification Framework
 
-A complete framework for training and deploying image classification models.
+**What is this?** A user-friendly tool that helps you teach a computer to recognize and categorize images automatically - no programming knowledge required!
 
-## Features
+![Framework Architecture](assets/images/architecture.svg)
 
-- Import datasets from zip files
-- Train models using various architectures
-- Interactive Gradio interface for testing
-- Configurable settings
-- Model evaluation and visualization
+## What Can This Do For You?
 
-## Installation
+This tool allows you to:
 
-Install dependencies:
+- **Automatically categorize images**: Train a computer to sort images into different categories (like "normal" vs. "abnormal" medical scans)
+- **Use your own image categories**: The system learns from your own labeled examples
+- **Apply expert knowledge**: You provide the labeled examples, the system learns the patterns
+- **Get immediate results**: Test your trained system on new images instantly
+- **No coding required**: Everything works through a simple interface
+
+![User Workflow](assets/images/workflow.svg)
+
+## Simple Explanation of How It Works
+
+1. **You provide categorized images**: For example, folders of "normal tissue" and "abnormal tissue" images
+2. **The system learns patterns**: The AI studies what makes each category unique
+3. **The system can then identify new images**: After learning, it can categorize images it's never seen before
+
+## Getting Started (Technical Instructions)
+
+### Installation
+
+Install the required software:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+For development purposes:
+
+```bash
+pip install -r requirements-dev.txt
+```
 
 ### Basic Usage
 
-The simplest way to use the framework is to run:
+The simplest way to use the framework:
 
 ```bash
 python app.py
 ```
 
 This will:
-1. Use the default dataset or prompt you to provide one
-2. Train a MobileNetV2 model (default)
-3. Launch a Gradio app for testing the model
+1. Guide you to provide a dataset of categorized images
+2. Train a model to recognize patterns in your images
+3. Launch a friendly interface for testing the trained model
 
-To use a specific dataset:
+### How to Prepare Your Images
 
-```bash
-python app.py --zip path/to/dataset.zip
-```
-
-### Dataset Format
-
-Your dataset zip file should have the following structure:
+Your images should be organized in folders, with each folder representing a category:
 
 ```
 dataset.zip
-├── class_1/
+├── normal/
 │   ├── image1.jpg
 │   ├── image2.jpg
 │   └── ...
-├── class_2/
+├── abnormal/
 │   ├── image1.jpg
 │   ├── image2.jpg
 │   └── ...
 └── ...
 ```
 
-Each folder name becomes a class label in the model.
+Each folder name becomes a category the system will learn to identify.
 
-### Command Line Arguments
+## Understanding the AI Models
 
-The framework provides many command line arguments to customize behavior:
+The system can use different "models" (AI engines) depending on your needs. Think of these as different brains with various capabilities:
+
+![Available Models](assets/images/models.svg)
+
+- **Fast, lightweight models** (like MobileNetV2): Great for starting out or when you need quick results
+- **Medium-sized models** (like ResNet50): Good balance between accuracy and speed
+- **Powerful models** (like ResNet152): When you need the highest possible accuracy
+
+## How Data Flows Through the System
+
+This diagram shows how your images move through the system - from input to results:
+
+![Data Flow](assets/images/dataflow.svg)
+
+1. **Your images** are loaded from a zip file
+2. **Data Loading**: The system organizes your images into categories
+3. **Preprocessing**: Images are standardized to work with the AI
+4. **Model Training**: The AI learns patterns from your images
+5. **Model Saving**: The trained AI is saved for future use
+6. **Application**: A user interface lets you test new images
+
+## Advanced Options
+
+If you want more control, you can customize settings:
 
 ```bash
 python app.py --help
 ```
 
-Common options:
+Common settings you can adjust:
 
-- `--mode` - Operation mode: 'train', 'app', or 'both' (default)
-- `--zip` - Path to dataset zip file
-- `--model` - Model architecture to use (default: mobilenetv2)
-- `--epochs` - Number of epochs to train
-- `--batch_size` - Batch size for training
-- `--lr` - Learning rate
-- `--img_size` - Image size (height width)
-- `--port` - Port for the Gradio app
-- `--checkpoint_dir` - Directory to save model checkpoints
+- Which AI model to use
+- How long to train the system
+- Image size and quality settings
+- Where to save your trained model
 
-### Configuration File
+### Using a Configuration File
 
-You can also specify settings in a JSON configuration file:
+For even more control, you can save all your settings in a configuration file:
 
 ```bash
 python app.py --config path/to/config.json
 ```
 
-To generate a default config file:
+## Practical Examples
+
+### Training with Your Images
 
 ```bash
-python app.py --zip path/to/dataset.zip --save_config path/to/config.json --mode train
+python app.py --zip your_images.zip --model resnet50 --epochs 20
 ```
 
-## Available Models
-
-The framework supports various model architectures:
-
-- mobilenetv2 (default, smallest and fastest)
-- resnet50
-- resnet101
-- resnet152
-- vgg16
-- vgg19
-- densenet121
-- densenet169
-- densenet201
-- efficientnetb0 - efficientnetb7
-
-## Examples
-
-### Train a model with custom settings
+### Testing Only (Skip Training)
 
 ```bash
-python app.py --zip dataset.zip --model resnet50 --epochs 20 --batch_size 16 --img_size 299 299
+python app.py --config your_settings.json --mode app
 ```
 
-### Launch app only (skips training)
+### Training Only (Skip Testing Interface)
 
 ```bash
-python app.py --config config.json --mode app
+python app.py --zip your_images.zip --mode train
 ```
 
-### Train only (skips app launch)
+## Potential Medical Applications
 
-```bash
-python app.py --zip dataset.zip --mode train
-```
+This tool could be useful for:
+
+- Classifying medical images (X-rays, scans, microscope images)
+- Sorting tissue samples based on visual characteristics
+- Pre-screening large image datasets to flag potential areas of interest
+- Educational tools for medical students learning pattern recognition
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.

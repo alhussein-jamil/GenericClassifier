@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background pattern -->
+  <pattern id="checkerboard" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0" width="10" height="10" fill="#f5f5f5"/>
+    <rect x="10" y="0" width="10" height="10" fill="#eeeeee"/>
+    <rect x="0" y="10" width="10" height="10" fill="#eeeeee"/>
+    <rect x="10" y="10" width="10" height="10" fill="#f5f5f5"/>
+  </pattern>
+  <rect width="800" height="200" fill="url(#checkerboard)"/>
+
+  <text x="400" y="30" font-weight="bold" font-size="20" text-anchor="middle" fill="#333">Framework Architecture</text>
+
+  <!-- Data Module -->
+  <rect x="50" y="70" width="150" height="80" fill="#e1f5fe" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="125" y="110" font-size="14" text-anchor="middle" fill="#333">Data Module</text>
+  <text x="125" y="130" font-size="12" text-anchor="middle" fill="#333">(Dataset Loading)</text>
+
+  <!-- Model Module -->
+  <rect x="320" y="70" width="150" height="80" fill="#e8f5e9" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="395" y="110" font-size="14" text-anchor="middle" fill="#333">Model Module</text>
+  <text x="395" y="130" font-size="12" text-anchor="middle" fill="#333">(Training)</text>
+
+  <!-- App Module -->
+  <rect x="590" y="70" width="150" height="80" fill="#fff8e1" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="665" y="110" font-size="14" text-anchor="middle" fill="#333">Gradio App</text>
+  <text x="665" y="130" font-size="12" text-anchor="middle" fill="#333">(Deployment)</text>
+
+  <!-- Arrows -->
+  <line x1="200" y1="110" x2="310" y2="110" stroke="#666" stroke-width="2"/>
+  <polygon points="310,110 304,106 304,114" fill="#666"/>
+
+  <line x1="470" y1="110" x2="580" y2="110" stroke="#666" stroke-width="2"/>
+  <polygon points="580,110 574,106 574,114" fill="#666"/>
+</svg>

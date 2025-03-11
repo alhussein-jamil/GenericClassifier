@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background pattern -->
+  <pattern id="checkerboard" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0" width="10" height="10" fill="#f5f5f5"/>
+    <rect x="10" y="0" width="10" height="10" fill="#eeeeee"/>
+    <rect x="0" y="10" width="10" height="10" fill="#eeeeee"/>
+    <rect x="10" y="10" width="10" height="10" fill="#f5f5f5"/>
+  </pattern>
+  <rect width="800" height="300" fill="url(#checkerboard)"/>
+
+  <text x="400" y="30" font-weight="bold" font-size="20" text-anchor="middle" fill="#333">User Workflow</text>
+
+  <!-- Step 1 -->
+  <rect x="50" y="70" width="170" height="70" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="135" y="105" font-size="14" text-anchor="middle" fill="#333">1. Import Dataset</text>
+
+  <!-- Step 2 -->
+  <rect x="50" y="190" width="170" height="70" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="135" y="225" font-size="14" text-anchor="middle" fill="#333">2. Configure Settings</text>
+
+  <!-- Step 3 -->
+  <rect x="310" y="130" width="170" height="70" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="395" y="165" font-size="14" text-anchor="middle" fill="#333">3. Train Model</text>
+
+  <!-- Step 4 -->
+  <rect x="570" y="70" width="170" height="70" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="655" y="105" font-size="14" text-anchor="middle" fill="#333">4. Evaluate Results</text>
+
+  <!-- Step 5 -->
+  <rect x="570" y="190" width="170" height="70" fill="#e3f2fd" stroke="#333" stroke-width="1" rx="10" ry="10"/>
+  <text x="655" y="225" font-size="14" text-anchor="middle" fill="#333">5. Deploy &amp; Test</text>
+
+  <!-- Arrows with simple polygons for arrowheads -->
+  <line x1="135" y1="140" x2="135" y2="180" stroke="#666" stroke-width="2"/>
+  <polygon points="135,190 131,180 139,180" fill="#666"/>
+
+  <line x1="220" y1="105" x2="300" y2="140" stroke="#666" stroke-width="2"/>
+  <polygon points="310,145 298,144 302,135" fill="#666"/>
+
+  <line x1="220" y1="225" x2="300" y2="180" stroke="#666" stroke-width="2"/>
+  <polygon points="310,175 298,176 302,185" fill="#666"/>
+
+  <line x1="480" y1="140" x2="560" y2="105" stroke="#666" stroke-width="2"/>
+  <polygon points="570,100 558,109 562,100" fill="#666"/>
+
+  <line x1="655" y1="140" x2="655" y2="180" stroke="#666" stroke-width="2"/>
+  <polygon points="655,190 651,180 659,180" fill="#666"/>
+</svg>

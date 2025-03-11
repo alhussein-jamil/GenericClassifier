@@ -1,11 +1,12 @@
 from dataclasses import dataclass
-from typing import List, Optional, Dict, Any
 from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
 class DataConfig:
     """Schema for data loading and preprocessing configuration."""
+
     zip_path: Path  # Path to the zip file containing image dataset
     extract_dir: Path  # Directory to extract the zip contents
     img_size: tuple[int, int] = (224, 224)  # Target image size
@@ -18,6 +19,7 @@ class DataConfig:
 @dataclass
 class ModelConfig:
     """Schema for model configuration."""
+
     model_name: str = "resnet50"  # Model architecture name
     num_classes: int = 0  # Number of classes (will be set based on data)
     pretrained: bool = True  # Whether to use pretrained weights
@@ -26,7 +28,7 @@ class ModelConfig:
     optimizer: str = "adam"  # Optimizer name
     loss: str = "categorical_crossentropy"  # Loss function
     metrics: List[str] = None  # Evaluation metrics
-    
+
     def __post_init__(self):
         if self.metrics is None:
             self.metrics = ["accuracy"]
@@ -35,8 +37,11 @@ class ModelConfig:
 @dataclass
 class AppConfig:
     """Schema for application configuration."""
+
     title: str = "Image Classification App"  # App title
-    description: str = "Upload an image to classify it using the trained model"  # App description
+    description: str = (
+        "Upload an image to classify it using the trained model"  # App description
+    )
     examples_dir: Optional[Path] = None  # Directory containing example images
     max_file_size: int = 5  # Max file size in MB
     port: int = 7860  # Port for Gradio app
@@ -45,22 +50,29 @@ class AppConfig:
 @dataclass
 class Config:
     """Main configuration schema combining all sub-configurations."""
+
     data: DataConfig
     model: ModelConfig
     app: AppConfig
     checkpoint_dir: Path = Path("checkpoints")  # Directory to save model checkpoints
     output_dir: Path = Path("output")  # Directory to save outputs
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert config to dictionary."""
         return {
-            "data": {k: str(v) if isinstance(v, Path) else v for k, v in vars(self.data).items()},
+            "data": {
+                k: str(v) if isinstance(v, Path) else v
+                for k, v in vars(self.data).items()
+            },
             "model": vars(self.model),
-            "app": {k: str(v) if isinstance(v, Path) else v for k, v in vars(self.app).items()},
+            "app": {
+                k: str(v) if isinstance(v, Path) else v
+                for k, v in vars(self.app).items()
+            },
             "checkpoint_dir": str(self.checkpoint_dir),
             "output_dir": str(self.output_dir),
         }
-    
+
     @classmethod
     def from_dict(cls, config_dict: Dict[str, Any]) -> "Config":
         """Create config from dictionary."""
@@ -73,7 +85,7 @@ class Config:
             augmentation=config_dict["data"]["augmentation"],
             shuffle=config_dict["data"]["shuffle"],
         )
-        
+
         model_config = ModelConfig(
             model_name=config_dict["model"]["model_name"],
             num_classes=config_dict["model"]["num_classes"],
@@ -84,19 +96,21 @@ class Config:
             loss=config_dict["model"]["loss"],
             metrics=config_dict["model"]["metrics"],
         )
-        
+
         app_config = AppConfig(
             title=config_dict["app"]["title"],
             description=config_dict["app"]["description"],
-            examples_dir=Path(config_dict["app"]["examples_dir"]) if config_dict["app"].get("examples_dir") else None,
+            examples_dir=Path(config_dict["app"]["examples_dir"])
+            if config_dict["app"].get("examples_dir")
+            else None,
             max_file_size=config_dict["app"]["max_file_size"],
             port=config_dict["app"]["port"],
         )
-        
+
         return cls(
             data=data_config,
             model=model_config,
             app=app_config,
             checkpoint_dir=Path(config_dict.get("checkpoint_dir", "checkpoints")),
             output_dir=Path(config_dict.get("output_dir", "output")),
-        ) 
+        )

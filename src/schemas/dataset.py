@@ -1,11 +1,12 @@
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Any
 from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
 class ImageInfo:
     """Schema for image information."""
+
     path: Path  # Path to the image file
     class_name: str  # Class label name
     class_id: int  # Numeric class ID
@@ -14,6 +15,7 @@ class ImageInfo:
 @dataclass
 class ClassInfo:
     """Schema for class information."""
+
     name: str  # Class name
     id: int  # Class ID
     sample_count: int = 0  # Number of samples in this class
@@ -22,6 +24,7 @@ class ClassInfo:
 @dataclass
 class DatasetMetadata:
     """Schema for dataset metadata."""
+
     name: str  # Name of the dataset
     num_classes: int  # Number of classes
     total_samples: int  # Total number of samples
@@ -33,20 +36,29 @@ class DatasetMetadata:
 @dataclass
 class Dataset:
     """Schema for the full dataset."""
+
     train_images: List[ImageInfo] = field(default_factory=list)  # Training images
     val_images: List[ImageInfo] = field(default_factory=list)  # Validation images
     classes: List[ClassInfo] = field(default_factory=list)  # Class information
     metadata: Optional[DatasetMetadata] = None  # Dataset metadata
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert dataset to dictionary."""
         return {
             "train_images": [
-                {"path": str(img.path), "class_name": img.class_name, "class_id": img.class_id}
+                {
+                    "path": str(img.path),
+                    "class_name": img.class_name,
+                    "class_id": img.class_id,
+                }
                 for img in self.train_images
             ],
             "val_images": [
-                {"path": str(img.path), "class_name": img.class_name, "class_id": img.class_id}
+                {
+                    "path": str(img.path),
+                    "class_name": img.class_name,
+                    "class_id": img.class_id,
+                }
                 for img in self.val_images
             ],
             "classes": [
@@ -59,10 +71,14 @@ class Dataset:
                 "total_samples": self.metadata.total_samples,
                 "class_distribution": self.metadata.class_distribution,
                 "class_mapping": self.metadata.class_mapping,
-                "inv_class_mapping": {str(k): v for k, v in self.metadata.inv_class_mapping.items()},
-            } if self.metadata else None,
+                "inv_class_mapping": {
+                    str(k): v for k, v in self.metadata.inv_class_mapping.items()
+                },
+            }
+            if self.metadata
+            else None,
         }
-    
+
     @classmethod
     def from_dict(cls, dataset_dict: Dict[str, Any]) -> "Dataset":
         """Create dataset from dictionary."""
@@ -74,7 +90,7 @@ class Dataset:
             )
             for img in dataset_dict.get("train_images", [])
         ]
-        
+
         val_images = [
             ImageInfo(
                 path=Path(img["path"]),
@@ -83,7 +99,7 @@ class Dataset:
             )
             for img in dataset_dict.get("val_images", [])
         ]
-        
+
         classes = [
             ClassInfo(
                 name=cls["name"],
@@ -92,7 +108,7 @@ class Dataset:
             )
             for cls in dataset_dict.get("classes", [])
         ]
-        
+
         metadata = None
         if dataset_dict.get("metadata"):
             metadata = DatasetMetadata(
@@ -101,12 +117,15 @@ class Dataset:
                 total_samples=dataset_dict["metadata"]["total_samples"],
                 class_distribution=dataset_dict["metadata"]["class_distribution"],
                 class_mapping=dataset_dict["metadata"]["class_mapping"],
-                inv_class_mapping={int(k): v for k, v in dataset_dict["metadata"]["inv_class_mapping"].items()},
+                inv_class_mapping={
+                    int(k): v
+                    for k, v in dataset_dict["metadata"]["inv_class_mapping"].items()
+                },
             )
-        
+
         return cls(
             train_images=train_images,
             val_images=val_images,
             classes=classes,
             metadata=metadata,
-        ) 
+        )
