@@ -12,25 +12,7 @@ A complete framework for training and deploying image classification models.
 
 ## Installation
 
-1. Create a virtual environment (recommended):
-
-```bash
-python -m venv venv
-```
-
-2. Activate the virtual environment:
-
-On Windows:
-```bash
-venv\Scripts\activate
-```
-
-On macOS/Linux:
-```bash
-source venv/bin/activate
-```
-
-3. Install dependencies:
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -40,16 +22,22 @@ pip install -r requirements.txt
 
 ### Basic Usage
 
-The simplest way to use the framework is to provide a zip file containing your dataset:
+The simplest way to use the framework is to run:
+
+```bash
+python app.py
+```
+
+This will:
+1. Use the default dataset or prompt you to provide one
+2. Train a MobileNetV2 model (default)
+3. Launch a Gradio app for testing the model
+
+To use a specific dataset:
 
 ```bash
 python app.py --zip path/to/dataset.zip
 ```
-
-This will:
-1. Extract the dataset from the zip file
-2. Train a MobileNetV2 model (default)
-3. Launch a Gradio app for testing the model
 
 ### Dataset Format
 
